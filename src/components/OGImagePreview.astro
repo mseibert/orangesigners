@@ -1,0 +1,81 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  slug?: string;
+  type?: 'home' | 'blog';
+}
+
+const { title, description, slug, type = 'home' } = Astro.props;
+
+const ogImageURL = type === 'home' 
+  ? new URL('/api/og-image?type=home', Astro.site).href
+  : new URL(`/api/og-image?type=blog&slug=${slug}`, Astro.site).href;
+---
+
+<div class="og-preview-container">
+  <h3 class="text-lg font-bold text-gray-800 mb-4">Open Graph Image Preview</h3>
+  
+  <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+    <div class="flex flex-col md:flex-row gap-4">
+      <!-- Preview Image -->
+      <div class="flex-shrink-0">
+        <img 
+          src={ogImageURL} 
+          alt={`OG Image for ${title}`}
+          class="w-80 h-42 object-cover rounded-lg border border-gray-200"
+          loading="lazy"
+        />
+      </div>
+      
+      <!-- Preview Info -->
+      <div class="flex-1">
+        <div class="space-y-2">
+          <div>
+            <span class="text-sm font-medium text-gray-500">Title:</span>
+            <p class="text-gray-900">{title}</p>
+          </div>
+          
+          {description && (
+            <div>
+              <span class="text-sm font-medium text-gray-500">Description:</span>
+              <p class="text-gray-900 text-sm">{description}</p>
+            </div>
+          )}
+          
+          <div>
+            <span class="text-sm font-medium text-gray-500">Image URL:</span>
+            <p class="text-gray-900 text-sm break-all">{ogImageURL}</p>
+          </div>
+          
+          <div>
+            <span class="text-sm font-medium text-gray-500">Dimensions:</span>
+            <p class="text-gray-900 text-sm">1200 × 630 px</p>
+          </div>
+        </div>
+        
+        <!-- Download Link -->
+        <div class="mt-4">
+          <a 
+            href={ogImageURL} 
+            download={`og-image-${slug || 'home'}.png`}
+            class="inline-flex items-center px-3 py-2 text-sm font-medium text-orange-600 bg-orange-50 border border-orange-200 rounded-md hover:bg-orange-100 transition-colors"
+          >
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+            Download OG Image
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .og-preview-container {
+    max-width: 56rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>

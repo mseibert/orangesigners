@@ -10,11 +10,15 @@ export interface Props {
 	title: string;
 	description?: string;
 	image?: ImageMetadata;
+	ogImage?: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description = 'Orange Singers - Unterstufenchor der Oranienschule Wiesbaden', image = FallbackImage } = Astro.props;
+const { title, description = 'Orange Singers - Unterstufenchor der Oranienschule Wiesbaden', image = FallbackImage, ogImage } = Astro.props;
+
+// Generate OG image URL
+const ogImageURL = ogImage || new URL(image.src, Astro.url);
 ---
 
 <!-- Global Metadata -->
@@ -43,14 +47,16 @@ const { title, description = 'Orange Singers - Unterstufenchor der Oranienschule
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image.src, Astro.url)} />
+<meta property="og:image" content={ogImageURL} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={Astro.url} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image.src, Astro.url)} />
+<meta property="twitter:image" content={ogImageURL} />
 
 <!-- Google Fonts - Lato -->
 <link rel="preconnect" href="https://fonts.googleapis.com">

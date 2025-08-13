@@ -1,62 +1,103 @@
-# Astro Starter Kit: Blog
+# Orange Singers Website
 
-```sh
-pnpm create astro@latest -- --template blog
+Die offizielle Website des Unterstufenchors der Oranienschule Wiesbaden.
+
+## Features
+
+- **Responsive Design** mit Tailwind CSS
+- **Blog-System** mit Markdown/MDX Support
+- **Dynamische OG-Image-Generierung** für Social Media
+- **SEO-optimiert** mit automatischen Meta-Tags
+- **RSS-Feed** für Blog-Updates
+
+## 🎨 Dynamische OG-Image-Generierung
+
+Die Website generiert automatisch Open Graph Bilder für Social Media (Facebook, Twitter, LinkedIn) mit folgenden Features:
+
+- **Automatische Generierung** bei Build-Zeit
+- **Hero-Image Integration** aus Blog-Posts
+- **Orange Singers Branding** mit konsistentem Design
+- **Standard-Dimensionen** 1200×630 Pixel
+- **Caching** für optimale Performance
+
+### Verwendung
+
+- **Hauptseite**: `/api/og-image?type=home`
+- **Blog-Posts**: `/api/og-image?type=blog&slug=[post-slug]`
+- **Admin-Interface**: `/admin/og-images`
+
+### Technische Details
+
+- **Sharp** für Bildverarbeitung
+- **SVG-Templates** für konsistentes Design
+- **Automatische Meta-Tags** in HTML-Head
+- **Statische Generierung** für beste Performance
+
+## Entwicklung
+
+### Voraussetzungen
+
+- Node.js 18+
+- pnpm
+
+### Installation
+
+```bash
+pnpm install
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### Development Server
 
-Features:
-
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-├── public/
-├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+```bash
+pnpm run dev
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### Build
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```bash
+pnpm run build
+```
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+### Preview
 
-Any static assets, like images, can be placed in the `public/` directory.
+```bash
+pnpm run preview
+```
 
-## 🧞 Commands
+## Projektstruktur
 
-All commands are run from the root of the project, from a terminal:
+```
+src/
+├── components/          # Astro-Komponenten
+├── content/            # Blog-Content (Markdown/MDX)
+├── layouts/            # Seiten-Layouts
+├── pages/              # Seiten und API-Routes
+├── styles/             # CSS-Styles
+├── utils/              # Utility-Funktionen
+└── assets/             # Bilder und andere Assets
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+## Technologie-Stack
 
-## 👀 Want to learn more?
+- **Astro** - Static Site Generator
+- **Tailwind CSS** - CSS Framework
+- **Sharp** - Bildverarbeitung
+- **TypeScript** - Typisierung
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Social Media Integration
 
-## Credit
+Die Website ist vollständig für Social Media optimiert:
 
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+- **Open Graph Meta-Tags** für Facebook
+- **Twitter Cards** für Twitter
+- **Dynamische Preview-Bilder** für alle Plattformen
+- **Strukturierte Daten** für bessere Sichtbarkeit
+
+## Support
+
+Bei Fragen oder Problemen:
+
+1. Überprüfen Sie die [OG-Image Dokumentation](docs/og-images.md)
+2. Testen Sie die Admin-Seite unter `/admin/og-images`
+3. Überprüfen Sie die generierten Bild-URLs
+4. Kontaktieren Sie das Entwicklungsteam
