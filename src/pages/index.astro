@@ -3,45 +3,58 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import '../styles/global.css';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="de">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
+			<h1>🎵 Willkommen bei den Orange Singers!</h1>
 			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
+				Herzlich willkommen auf der offiziellen Website der <strong>Orange Singers</strong>, 
+				dem Unterstufenchor der Oranienschule Wiesbaden.
 			</p>
+			
+			<h2>Über uns</h2>
 			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
+				Die Orange Singers sind ein Chor für Schülerinnen und Schüler der 5. und 6. Klasse 
+				der Oranienschule Wiesbaden. Unter der Leitung von <strong>Juliane Seibert</strong> 
+				entdecken wir gemeinsam die Freude am gemeinsamen Singen und Musizieren.
 			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
+			
+			<h2>Die Oranienschule Wiesbaden</h2>
+			<p>
+				Die Oranienschule ist eine Schule mit <strong>Musikschwerpunkt</strong>, die ihren 
+				Schülerinnen und Schülern eine besondere musikalische Förderung bietet. Als Teil 
+				des vielfältigen Musikangebots der Schule bereichern die Orange Singers das 
+				schulische Leben mit ihren Auftritten und Konzerten.
+			</p>
+			
+			<h2>Was wir machen</h2>
 			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
+				<li>Gemeinsames Singen und Musizieren</li>
+				<li>Erlernen verschiedener Musikstile und Lieder</li>
+				<li>Auftritte bei schulischen Veranstaltungen</li>
+				<li>Konzerte und musikalische Darbietungen</li>
+				<li>Förderung der musikalischen Talente</li>
 			</ul>
+			
+			<h2>Mitmachen</h2>
 			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
+				Alle Schülerinnen und Schüler der 5. und 6. Klasse sind herzlich eingeladen, 
+				bei den Orange Singers mitzumachen! Vorkenntnisse sind nicht erforderlich - 
+				die Freude am Singen steht im Mittelpunkt.
 			</p>
+			
 			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
+				Bei Fragen oder Interesse an einer Teilnahme kannst du dich gerne an 
+				<strong>Juliane Seibert</strong> wenden oder einfach bei einer unserer 
+				Proben vorbeischauen.
 			</p>
 		</main>
 		<Footer />
