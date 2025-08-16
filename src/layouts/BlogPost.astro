@@ -16,73 +16,50 @@ const slug = Astro.url.pathname.split('/').pop()?.replace(/\/$/, '') || '';
 const ogImageURL = new URL(`/api/og-image?type=blog&slug=${slug}`, Astro.site).href;
 ---
 
-<html lang="en">
+<html lang="de">
 	<head>
 		<BaseHead title={title} description={description} ogImage={ogImageURL} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
 	</head>
 
-	<body>
+	<body class="bg-gray-50 min-h-screen">
 		<Header />
-		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
+		<main class="max-w-4xl mx-auto px-4 py-8">
+			<article class="bg-white rounded-xl shadow-lg overflow-hidden">
+				{heroImage && (
+					<div class="w-full">
+						<Image 
+							width={1020} 
+							height={510} 
+							src={heroImage} 
+							alt="" 
+							class="w-full h-auto object-cover"
+						/>
+					</div>
+				)}
+				
+				<div class="p-8 md:p-12">
+					<div class="text-center mb-12">
+						<div class="mb-6">
+							<FormattedDate date={pubDate} class="text-lg text-oranienschule-600 font-medium" />
 							{
 								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
+									<div class="text-sm text-gray-500 italic mt-2">
+										Zuletzt aktualisiert am <FormattedDate date={updatedDate} />
 									</div>
 								)
 							}
 						</div>
-						<h1>{title}</h1>
-						<hr />
+						
+						<h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+							{title}
+						</h1>
+						
+						<div class="w-24 h-1 bg-gradient-to-r from-oranienschule-500 to-oranienschule-600 mx-auto rounded-full"></div>
 					</div>
-					<slot />
+					
+					<div class="prose prose-lg max-w-none prose-headings:text-gray-900 prose-headings:font-bold prose-p:text-gray-700 prose-p:leading-relaxed prose-a:text-oranienschule-600 prose-a:font-medium hover:prose-a:text-oranienschule-700 prose-strong:text-gray-900 prose-strong:font-semibold prose-blockquote:border-l-oranienschule-500 prose-blockquote:bg-orange-50 prose-blockquote:py-2 prose-blockquote:px-4 prose-blockquote:rounded-r-lg">
+						<slot />
+					</div>
 				</div>
 			</article>
 		</main>

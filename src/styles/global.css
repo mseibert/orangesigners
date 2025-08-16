@@ -5,39 +5,101 @@
   Angelehnt an die Oranienschule Wiesbaden
  */
 
+/* Google Fonts Import für bessere Typografie */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lato:wght@300;400;700;900&display=swap');
+
 body {
-	font-family: 'Lato', sans-serif;
+	font-family: 'Inter', 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 	margin: 0;
 	padding: 0;
-	background: white;
+	background: #f9fafb;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
-	color: #3a424c;
+	color: #1f2937;
 	font-size: 16px;
-	line-height: 1.6;
+	line-height: 1.7;
 	font-weight: 400;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 /* Grundlegende Typografie */
 h1, h2, h3, h4, h5, h6 {
-	margin: 0 0 1rem 0;
-	color: #3a424c;
-	line-height: 1.3;
+	margin: 0 0 1.5rem 0;
+	color: #111827;
+	line-height: 1.2;
+	font-weight: 700;
+	font-family: 'Inter', 'Lato', sans-serif;
+	letter-spacing: -0.025em;
+}
+
+h1 {
+	font-size: 2.5rem;
+	font-weight: 800;
+}
+
+h2 {
+	font-size: 2rem;
 	font-weight: 700;
 }
 
+h3 {
+	font-size: 1.5rem;
+	font-weight: 600;
+}
+
 p {
-	margin-bottom: 1.2em;
-	line-height: 1.7;
+	margin-bottom: 1.5em;
+	line-height: 1.8;
+	color: #374151;
 }
 
 a {
 	text-decoration: none;
+	color: #f08300;
+	transition: all 0.2s ease-in-out;
 }
 
-img {
-	max-width: 100%;
-	height: auto;
+a:hover {
+	color: #e07400;
+}
+
+/* Buttons und interaktive Elemente */
+.btn {
+	display: inline-block;
+	padding: 0.75rem 1.5rem;
+	font-weight: 600;
+	text-align: center;
+	border-radius: 0.75rem;
+	transition: all 0.3s ease;
+	cursor: pointer;
+	border: none;
+	font-size: 1rem;
+}
+
+.btn-primary {
+	background: linear-gradient(135deg, #f08300 0%, #e07400 100%);
+	color: white;
+	box-shadow: 0 4px 14px 0 rgba(240, 131, 0, 0.39);
+}
+
+.btn-primary:hover {
+	background: linear-gradient(135deg, #e07400 0%, #d07100 100%);
+	transform: translateY(-2px);
+	box-shadow: 0 8px 25px 0 rgba(240, 131, 0, 0.4);
+}
+
+/* Cards und Container */
+.card {
+	background: white;
+	border-radius: 1rem;
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+	transition: all 0.3s ease;
+}
+
+.card:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 /* Responsive Design */
@@ -45,4 +107,34 @@ img {
 	body {
 		font-size: 16px;
 	}
+	
+	h1 {
+		font-size: 2rem;
+	}
+	
+	h2 {
+		font-size: 1.75rem;
+	}
+	
+	h3 {
+		font-size: 1.25rem;
+	}
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #f08300;
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #e07400;
 }
