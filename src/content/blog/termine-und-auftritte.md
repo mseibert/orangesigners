@@ -1,7 +1,7 @@
 ---
 title: 'Termine und Auftritte'
 description: 'Termine und Auftritte der Orangesingers'
-pubDate: 'Aug 08 2021'
+pubDate: 'Aug 17 2025'
 heroImage: '../../assets/blog-placeholder-about.jpg'
 ---
 
