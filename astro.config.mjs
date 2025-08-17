@@ -14,5 +14,9 @@ export default defineConfig({
   integrations: [mdx(), sitemap()],
   vite: {
     plugins: [tailwind()],
+    // Stelle sicher, dass Umgebungsvariablen bei der Generierung verfügbar sind
+    define: {
+      'import.meta.env.SINGERTOKEN': JSON.stringify(process.env.SINGERTOKEN || 'orangesingers-2024'),
+    },
   },
 });
