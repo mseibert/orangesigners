@@ -54,7 +54,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
   
   // Return 401 with Basic Auth challenge
   // This will trigger the browser's password prompt
-  return new Response('Unauthorized', {
+  return new Response('Für diese Seite ist ein derzeit noch ein Passwort erforderlich. Bitte kontaktiere seibert.juliane@gmail.com, um Zugriff zu erhalten.', {
     status: 401,
     headers: {
       'WWW-Authenticate': 'Basic realm="Orange Singers Website"',
