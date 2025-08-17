@@ -25,6 +25,10 @@ Bis zum nächsten Auftritt!
 Eure Orangesingers
 
 <audio controls style="margin: 2rem 0; width: 100%;">
+  <source src="/mamma-mia.m4a" type="audio/mp4" />
+  
+</audio>
+<audio controls style="margin: 2rem 0; width: 100%;">
   <source src="/funga.m4a" type="audio/mp4" />
   
 </audio>
@@ -38,11 +42,5 @@ Eure Orangesingers
 </audio>
 <audio controls style="margin: 2rem 0; width: 100%;">
   <source src="/you've got a friend in me.m4a" type="audio/mp4" />
-  
-</audio>
-
-
-<audio controls style="margin: 2rem 0; width: 100%;">
-  <source src="/mamma-mia.m4a" type="audio/mp4" />
   
 </audio>
