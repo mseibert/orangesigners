@@ -11,34 +11,33 @@ export const onRequest = defineMiddleware(async (context, next) => {
     return next();
   }
 
-  // Skip authentication during build/generation time
-  if (import.meta.env.SSR) {
-    const expectedToken = import.meta.env.SINGERTOKEN;
+  // Skip authentication during development, build time, or when prerendering
+  if (import.meta.env.DEV || import.meta.env.BUILD || import.meta.env.PRERENDER) {
+    return next();
+  }
+
+  const expectedToken = import.meta.env.SINGERTOKEN;
+  
+  // Check for Authorization header
+  const authHeader = request.headers.get('Authorization');
+  
+  if (authHeader && authHeader.startsWith('Basic ')) {
+    const encodedCredentials = authHeader.substring(6);
+    const credentials = atob(encodedCredentials);
+    const [username, password] = credentials.split(':');
     
-    // Check for Authorization header
-    const authHeader = request.headers.get('Authorization');
-    
-    if (authHeader && authHeader.startsWith('Basic ')) {
-      const encodedCredentials = authHeader.substring(6);
-      const credentials = atob(encodedCredentials);
-      const [username, password] = credentials.split(':');
-      
-      // For Basic Auth, we'll use the token as both username and password
-      if (password === expectedToken) {
-        return next();
-      }
+    // For Basic Auth, we'll use the token as both username and password
+    if (password === expectedToken) {
+      return next();
     }
-    
-    // Return 401 with Basic Auth challenge
-    return new Response('Unauthorized', {
-      status: 401,
-      headers: {
-        'WWW-Authenticate': 'Basic realm="Orange Singers Website"',
-        'Content-Type': 'text/plain'
-      }
-    });
   }
   
-  // During build time, just continue
-  return next();
+  // Return 401 with Basic Auth challenge
+  return new Response('Unauthorized', {
+    status: 401,
+    headers: {
+      'WWW-Authenticate': 'Basic realm="Orange Singers Website"',
+      'Content-Type': 'text/plain'
+    }
+  });
 });
