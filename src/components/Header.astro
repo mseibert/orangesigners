@@ -16,11 +16,123 @@ import '../styles/tailwind.css';
 				</a>
 			</div>
 			
+			<!-- Desktop Navigation -->
 			<div class="hidden md:flex items-center space-x-8">
 				<HeaderLink href="/" class="text-gray-700 hover:text-oranienschule-500 font-medium transition-colors duration-300">Startseite</HeaderLink>
 				<HeaderLink href="/blog" class="text-gray-700 hover:text-oranienschule-500 font-medium transition-colors duration-300">Blog</HeaderLink>
 				<HeaderLink href="/about" class="text-gray-700 hover:text-oranienschule-500 font-medium transition-colors duration-300">Über uns</HeaderLink>
 			</div>
+
+			<!-- Mobile Hamburger Button -->
+			<button 
+				id="mobile-menu-button"
+				class="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 focus:outline-none"
+				aria-label="Menü öffnen"
+			>
+				<span class="block w-6 h-0.5 bg-gray-700 transition-all duration-300 transform" id="hamburger-line-1"></span>
+				<span class="block w-6 h-0.5 bg-gray-700 transition-all duration-300 transform" id="hamburger-line-2"></span>
+				<span class="block w-6 h-0.5 bg-gray-700 transition-all duration-300 transform" id="hamburger-line-3"></span>
+			</button>
+		</div>
+
+		<!-- Mobile Navigation Menu -->
+		<div 
+			id="mobile-menu" 
+			class="md:hidden hidden bg-white border-t border-gray-200 transition-all duration-300 ease-in-out"
+		>
+			<div class="px-2 pt-2 pb-3 space-y-1">
+				<HeaderLink 
+					href="/" 
+					class="block px-3 py-2 text-gray-700 hover:text-oranienschule-500 hover:bg-gray-50 rounded-md font-medium transition-colors duration-300"
+				>
+					Startseite
+				</HeaderLink>
+				<HeaderLink 
+					href="/blog" 
+					class="block px-3 py-2 text-gray-700 hover:text-oranienschule-500 hover:bg-gray-50 rounded-md font-medium transition-colors duration-300"
+				>
+					Blog
+				</HeaderLink>
+				<HeaderLink 
+					href="/about" 
+					class="block px-3 py-2 text-gray-700 hover:text-oranienschule-500 hover:bg-gray-50 rounded-md font-medium transition-colors duration-300"
+				>
+					Über uns
+				</HeaderLink>
+			</div>
 		</div>
 	</nav>
 </header>
+
+<script is:inline>
+	// Mobile menu functionality
+	document.addEventListener('DOMContentLoaded', function() {
+		const mobileMenuButton = document.getElementById('mobile-menu-button');
+		const mobileMenu = document.getElementById('mobile-menu');
+		const hamburgerLines = [
+			document.getElementById('hamburger-line-1'),
+			document.getElementById('hamburger-line-2'),
+			document.getElementById('hamburger-line-3')
+		];
+
+		// Check if all elements exist
+		if (!mobileMenuButton || !mobileMenu || !hamburgerLines[0] || !hamburgerLines[1] || !hamburgerLines[2]) {
+			console.error('Mobile menu elements not found');
+			return;
+		}
+
+		let isMenuOpen = false;
+
+		function toggleMenu() {
+			isMenuOpen = !isMenuOpen;
+			
+			if (isMenuOpen) {
+				// Open menu
+				mobileMenu.classList.remove('hidden');
+				mobileMenuButton.setAttribute('aria-label', 'Menü schließen');
+				
+				// Animate hamburger to X
+				hamburgerLines[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+				hamburgerLines[1].style.opacity = '0';
+				hamburgerLines[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+			} else {
+				// Close menu
+				mobileMenu.classList.add('hidden');
+				mobileMenuButton.setAttribute('aria-label', 'Menü öffnen');
+				
+				// Reset hamburger animation
+				hamburgerLines[0].style.transform = 'none';
+				hamburgerLines[1].style.opacity = '1';
+				hamburgerLines[2].style.transform = 'none';
+			}
+		}
+
+		// Event listeners
+		mobileMenuButton.addEventListener('click', toggleMenu);
+
+		// Close menu when clicking on a link
+		const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+		mobileMenuLinks.forEach(link => {
+			link.addEventListener('click', () => {
+				if (isMenuOpen) {
+					toggleMenu();
+				}
+			});
+		});
+
+		// Close menu when clicking outside
+		document.addEventListener('click', (event) => {
+			const target = event.target;
+			if (isMenuOpen && !mobileMenuButton.contains(target) && !mobileMenu.contains(target)) {
+				toggleMenu();
+			}
+		});
+
+		// Close menu on window resize if switching to desktop
+		window.addEventListener('resize', () => {
+			if (window.innerWidth >= 768 && isMenuOpen) {
+				toggleMenu();
+			}
+		});
+	});
+</script>
