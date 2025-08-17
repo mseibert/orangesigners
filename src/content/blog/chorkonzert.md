@@ -6,13 +6,36 @@ heroImage: '../../assets/images/chorconcert.png'
 ---
 ## Hörproben
 
-| Lied | Hörprobe |
-|------|----------|
-| Mamma Mia | <audio controls style="width: 100%;"><source src="/mamma-mia.m4a" type="audio/mp4" /></audio> |
-| Funga Alafia | <audio controls style="width: 100%;"><source src="/funga.m4a" type="audio/mp4" /></audio> |
-| Mamotte | <audio controls style="width: 100%;"><source src="/mamotte.m4a" type="audio/mp4" /></audio> |
-| Vaiana | <audio controls style="width: 100%;"><source src="/vaiana.m4a" type="audio/mp4" /></audio> |
-| You've Got a Friend in Me | <audio controls style="width: 100%;"><source src="/you've got a friend in me.m4a" type="audio/mp4" /></audio> |
+<table style="width: 100%; border-collapse: collapse; margin: 2rem 0;">
+  <thead>
+    <tr style="border-bottom: 2px solid #f08300;">
+      <th style="text-align: left; padding: 1rem; width: 25%; font-weight: bold; color: #f08300;">Lied</th>
+      <th style="text-align: center; padding: 1rem; width: 75%; font-weight: bold; color: #f08300;">Hörprobe</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom: 1px solid #e5e7eb;">
+      <td style="padding: 1rem; vertical-align: middle;">Mamma Mia</td>
+      <td style="padding: 1rem; text-align: center;"><audio controls style="width: 100%;"><source src="/mamma-mia.m4a" type="audio/mp4" /></audio></td>
+    </tr>
+    <tr style="border-bottom: 1px solid #e5e7eb;">
+      <td style="padding: 1rem; vertical-align: middle;">Funga Alafia</td>
+      <td style="padding: 1rem; text-align: center;"><audio controls style="width: 100%;"><source src="/funga.m4a" type="audio/mp4" /></audio></td>
+    </tr>
+    <tr style="border-bottom: 1px solid #e5e7eb;">
+      <td style="padding: 1rem; vertical-align: middle;">Mamotte</td>
+      <td style="padding: 1rem; text-align: center;"><audio controls style="width: 100%;"><source src="/mamotte.m4a" type="audio/mp4" /></audio></td>
+    </tr>
+    <tr style="border-bottom: 1px solid #e5e7eb;">
+      <td style="padding: 1rem; vertical-align: middle;">Vaiana</td>
+      <td style="padding: 1rem; text-align: center;"><audio controls style="width: 100%;"><source src="/vaiana.m4a" type="audio/mp4" /></audio></td>
+    </tr>
+    <tr style="border-bottom: 1px solid #e5e7eb;">
+      <td style="padding: 1rem; vertical-align: middle;">You've Got a Friend in Me</td>
+      <td style="padding: 1rem; text-align: center;"><audio controls style="width: 100%;"><source src="/you've got a friend in me.m4a" type="audio/mp4" /></audio></td>
+    </tr>
+  </tbody>
+</table>
 
 ## Bericht vom Chorkonzert
 
