@@ -2,6 +2,7 @@
 
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
+import node from '@astrojs/node';
 import { defineConfig } from 'astro/config';
 import tailwind from '@tailwindcss/vite';
 
@@ -9,6 +10,9 @@ import tailwind from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://orangesingers.de',
   output: 'server',
+  adapter: node({
+    mode: 'standalone'
+  }),
   integrations: [mdx(), sitemap()],
   vite: {
     plugins: [tailwind()],
