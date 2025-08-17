@@ -193,9 +193,9 @@ const {
         requestFormData.append('formMailSubject', formMailSubject);
         requestFormData.append('emailBodyText', emailBodyText);
         requestFormData.append('customerEmailBodyText', customerEmailBodyText);
-        files.forEach((file, idx) => {
-          requestFormData.append('attachments', file, file.name);
-        });
+        if (files.length === 1) {
+          requestFormData.append('attachments', files[0], files[0].name);
+        }
 
         const response = await fetch('/api/contact', {
           method: 'POST',

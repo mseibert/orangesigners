@@ -28,7 +28,7 @@ export const POST: APIRoute = async ({ request }) => {
       customerEmailBodyText = String(formData.get('customerEmailBodyText') || customerEmailBodyText);
 
       const files = formData.getAll('attachments') as unknown as File[];
-      const maxFiles = 5;
+      const maxFiles = 1;
       const maxTotalSize = 10 * 1024 * 1024;
       const allowedMimeTypes = new Set([
         'application/pdf',
@@ -44,7 +44,7 @@ export const POST: APIRoute = async ({ request }) => {
         if (files.length > maxFiles) {
           return new Response(JSON.stringify({
             success: false,
-            message: 'Bitte maximal 5 Dateien hochladen'
+            message: 'Bitte nur eine Datei hochladen'
           }), { status: 400, headers: { 'Content-Type': 'application/json' } });
         }
         const totalSize = files.reduce((sum, f: any) => sum + (f?.size || 0), 0);
@@ -109,7 +109,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   // Anhang-Validierung (serverseitig)
   if (attachments && Array.isArray(attachments)) {
-    const maxFiles = 5;
+    const maxFiles = 1;
     const maxTotalSize = 10 * 1024 * 1024;
     const allowedMimeTypes = new Set([
       'application/pdf',
@@ -124,7 +124,7 @@ export const POST: APIRoute = async ({ request }) => {
     if (attachments.length > maxFiles) {
       return new Response(JSON.stringify({
         success: false,
-        message: 'Bitte maximal 5 Dateien hochladen'
+        message: 'Bitte nur eine Datei hochladen'
       }), { status: 400, headers: { 'Content-Type': 'application/json' } });
     }
 
