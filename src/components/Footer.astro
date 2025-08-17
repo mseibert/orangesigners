@@ -1,10 +1,12 @@
 ---
+export const prerender = false;
+import ContactForm from './ContactForm.astro';
 const today = new Date();
 ---
 
 <footer class="bg-gray-50 text-gray-700 mt-16 border-t-2 border-oranienschule-500">
 	<div class="max-w-7xl mx-auto px-4 py-12">
-		<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+		<div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
 			<div>
 				<h3 class="text-oranienschule-500 font-bold text-xl mb-4 border-b-2 border-oranienschule-500 pb-2">Orange Singers</h3>
 				<p class="text-gray-600 mb-2">Unterstufenchor der Oranienschule Wiesbaden</p>
@@ -25,6 +27,16 @@ const today = new Date();
 					<li><a href="/about" class="text-gray-600 hover:text-oranienschule-500 transition-colors duration-300">Über uns</a></li>
 					<li><a href="/blog" class="text-gray-600 hover:text-oranienschule-500 transition-colors duration-300">Blog</a></li>
 				</ul>
+			</div>
+			
+			<div class="md:col-span-1">
+				<ContactForm 
+					fromMailAddress="musik@oranienschule.de"
+					replyToAddress="musik@oranienschule.de"
+					formMailSubject="Kontaktformular von Orange Singers Website"
+					emailBodyText="This form was submitted at: {ReferrerURL}\n\nFrom: {SubmitterMailAddress}\nMessage: {Message}"
+					customerEmailBodyText="Jemand hat ein Kontaktformular auf der Orange Singers Website hier ausgefüllt: {ReferrerURL}\n\nE-Mail-Adresse: {SubmitterMailAddress}\nNachricht: {Message}\n\nDies ist eine automatische Nachricht von der Orange Singers Website. Falls du das Formular nicht ausgefüllt hast, kannst du diese E-Mail ignorieren. Bei Fragen kontaktiere uns bitte unter musik@oranienschule.de."
+				/>
 			</div>
 		</div>
 		
