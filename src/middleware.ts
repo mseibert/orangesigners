@@ -3,10 +3,11 @@ import { defineMiddleware } from 'astro:middleware';
 export const onRequest = defineMiddleware(async (context, next) => {
   const { request, url } = context;
   
-  // Skip authentication for static assets and API endpoints
+  // Skip authentication for static assets, API endpoints, and auth page
   if (url.pathname.startsWith('/api/') ||
       url.pathname.startsWith('/_astro/') ||
       url.pathname.startsWith('/favicon') ||
+      url.pathname === '/auth' ||
       url.pathname.includes('.')) {
     return next();
   }
@@ -40,6 +41,16 @@ export const onRequest = defineMiddleware(async (context, next) => {
     return next();
   }
   
+  // If no authorization header is present, redirect to auth page
+  // This handles both generation requests (which will be allowed) and real users
+  if (!authHeader) {
+    // Only redirect if this is not a generation request
+    if (!isBot && !import.meta.env.BUILD && !import.meta.env.PRERENDER) {
+      return Response.redirect(new URL('/auth', url), 302);
+    }
+    return next();
+  }
+  
   // If authorization header is present, validate it
   if (authHeader && authHeader.startsWith('Basic ')) {
     const encodedCredentials = authHeader.substring(6);
@@ -52,13 +63,6 @@ export const onRequest = defineMiddleware(async (context, next) => {
     }
   }
   
-  // Return 401 with Basic Auth challenge
-  // This will trigger the browser's password prompt
-  return new Response('Für diese Seite ist ein derzeit noch ein Passwort erforderlich. Bitte kontaktiere seibert.juliane@gmail.com, um Zugriff zu erhalten.', {
-    status: 401,
-    headers: {
-      'WWW-Authenticate': 'Basic realm="Orange Singers Website"',
-      'Content-Type': 'text/plain'
-    }
-  });
+  // Redirect to our beautiful auth page instead of showing browser dialog
+  return Response.redirect(new URL('/auth', url), 302);
 });
