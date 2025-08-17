@@ -34,6 +34,8 @@ export const POST: APIRoute = async ({ request }) => {
         'application/pdf',
         'image/jpeg',
         'image/png',
+        'image/heic',
+        'image/heif',
         'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
         'application/msword'
       ]);
@@ -113,6 +115,8 @@ export const POST: APIRoute = async ({ request }) => {
       'application/pdf',
       'image/jpeg',
       'image/png',
+      'image/heic',
+      'image/heif',
       'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
       'application/msword'
     ]);
