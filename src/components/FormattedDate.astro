@@ -1,18 +1,46 @@
 ---
 interface Props {
-	date: Date;
+	date: Date | undefined | string;
 	class?: string;
+	fallback?: string;
 }
 
-const { date, class: className } = Astro.props;
+const { date, class: className, fallback = 'Datum nicht verfügbar' } = Astro.props;
+
+// Konvertiere string zu Date falls nötig
+let dateObj: Date | undefined;
+let isValidDate = false;
+let formattedDate = fallback;
+
+if (typeof date === 'string') {
+	// Versuche verschiedene Datumsformate zu parsen
+	const dateStr = date.trim();
+	
+	// Für amerikanisches Format wie "Jun 19 2024"
+	if (/^[A-Za-z]{3}\s+\d{1,2}\s+\d{4}$/.test(dateStr)) {
+		dateObj = new Date(dateStr);
+	} else {
+		dateObj = new Date(dateStr);
+	}
+} else {
+	dateObj = date;
+}
+
+// Prüfe ob date existiert und gültig ist
+if (dateObj && dateObj instanceof Date && !isNaN(dateObj.getTime())) {
+	isValidDate = true;
+	formattedDate = dateObj.toLocaleDateString('de-DE', {
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric',
+	});
+}
 ---
 
-<time datetime={date.toISOString()} class={className}>
-	{
-		date.toLocaleDateString('de-DE', {
-			year: 'numeric',
-			month: 'long',
-			day: 'numeric',
-		})
-	}
-</time>
+{isValidDate ? (
+	<time datetime={dateObj!.toISOString()} class={className}>
+		{formattedDate}
+	</time>
+) : (
+	<span class={className}>{formattedDate}</span>
+)}
