@@ -50,7 +50,7 @@ heroImage: '../../assets/blog-placeholder-about.jpg'
 
 ## Zusätzliche Informationen
 
-- **Probenzeiten**: Jeden Dienstag in der 1. und 8. Stunde in der Oranienschule  
+- **Probenzeiten**: Jeden Dienstag in der 7. und 8. Stunde in der Oranienschule  
 - **Anzahl Auftritte**: Etwa 6 Mal pro Schuljahr bei verschiedenen Veranstaltungen  
 - **Besonderheit**: Schülerinnen und Schüler der 5. und 6. Klassen können nach Absprache bei Proben hineinschnuppern  
 
