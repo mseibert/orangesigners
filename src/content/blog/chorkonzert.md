@@ -23,3 +23,20 @@ Ein großer Dank geht an unseren Chorleiter, der immer geduldig mit uns geprobt 
 
 Bis zum nächsten Auftritt!
 Eure Orangesingers
+
+<audio controls style="margin: 2rem 0; width: 100%;">
+  <source src="/funga.m4a" type="audio/mp4" />
+  
+</audio>
+<audio controls style="margin: 2rem 0; width: 100%;">
+  <source src="/mamotte.m4a" type="audio/mp4" />
+  
+</audio>
+<audio controls style="margin: 2rem 0; width: 100%;">
+  <source src="/vaiana.m4a" type="audio/mp4" />
+  
+</audio>
+<audio controls style="margin: 2rem 0; width: 100%;">
+  <source src="/you've got a friend in me.m4a" type="audio/mp4" />
+  
+</audio>
