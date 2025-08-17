@@ -25,12 +25,21 @@ export const onRequest = defineMiddleware(async (context, next) => {
   // Check for Authorization header
   const authHeader = request.headers.get('Authorization');
   
-  // If no authorization header is present, this might be a generation request
-  // Skip authentication in this case to allow proper generation
-  if (!authHeader) {
+  // Check if this is a bot/crawler request (which should be allowed for generation)
+  const userAgent = request.headers.get('User-Agent') || '';
+  const isBot = userAgent.includes('bot') || 
+                userAgent.includes('crawler') || 
+                userAgent.includes('spider') ||
+                userAgent.includes('vercel') ||
+                userAgent.includes('build') ||
+                userAgent.includes('deploy');
+  
+  // Allow bot requests to pass through (for generation)
+  if (isBot) {
     return next();
   }
   
+  // If authorization header is present, validate it
   if (authHeader && authHeader.startsWith('Basic ')) {
     const encodedCredentials = authHeader.substring(6);
     const credentials = atob(encodedCredentials);
@@ -43,6 +52,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
   }
   
   // Return 401 with Basic Auth challenge
+  // This will trigger the browser's password prompt
   return new Response('Unauthorized', {
     status: 401,
     headers: {
