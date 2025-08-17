@@ -6,26 +6,13 @@ heroImage: '../../assets/images/chorconcert.png'
 ---
 ## Hörproben
 
-<audio controls style="margin: 2rem 0; width: 100%;">
-  <source src="/mamma-mia.m4a" type="audio/mp4" />
-  
-</audio>
-<audio controls style="margin: 2rem 0; width: 100%;">
-  <source src="/funga.m4a" type="audio/mp4" />
-  
-</audio>
-<audio controls style="margin: 2rem 0; width: 100%;">
-  <source src="/mamotte.m4a" type="audio/mp4" />
-  
-</audio>
-<audio controls style="margin: 2rem 0; width: 100%;">
-  <source src="/vaiana.m4a" type="audio/mp4" />
-  
-</audio>
-<audio controls style="margin: 2rem 0; width: 100%;">
-  <source src="/you've got a friend in me.m4a" type="audio/mp4" />
-  
-</audio>
+| Lied | Hörprobe |
+|------|----------|
+| Mamma Mia | <audio controls style="width: 100%;"><source src="/mamma-mia.m4a" type="audio/mp4" /></audio> |
+| Funga Alafia | <audio controls style="width: 100%;"><source src="/funga.m4a" type="audio/mp4" /></audio> |
+| Mamotte | <audio controls style="width: 100%;"><source src="/mamotte.m4a" type="audio/mp4" /></audio> |
+| Vaiana | <audio controls style="width: 100%;"><source src="/vaiana.m4a" type="audio/mp4" /></audio> |
+| You've Got a Friend in Me | <audio controls style="width: 100%;"><source src="/you've got a friend in me.m4a" type="audio/mp4" /></audio> |
 
 ## Bericht vom Chorkonzert
 
