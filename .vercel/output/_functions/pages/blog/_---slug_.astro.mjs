@@ -1,5 +1,5 @@
 import { b as createAstro, c as createComponent, r as renderComponent, a as renderTemplate } from '../../chunks/astro/server_crBGogEi.mjs';
-import { r as renderEntry, g as getCollection } from '../../chunks/_astro_content_WdbV0-81.mjs';
+import { r as renderEntry, g as getCollection } from '../../chunks/_astro_content_BlWuvrH8.mjs';
 import { $ as $$BlogPost } from '../../chunks/BlogPost_C8RC6508.mjs';
 export { renderers } from '../../renderers.mjs';
 

@@ -1,7 +1,7 @@
 import { c as createComponent, r as renderComponent, e as renderHead, d as addAttribute, a as renderTemplate } from '../chunks/astro/server_crBGogEi.mjs';
 import '../chunks/index_MaT6fT73.mjs';
 import { $ as $$Image } from '../chunks/_astro_assets_DUILIom-.mjs';
-import { g as getCollection } from '../chunks/_astro_content_WdbV0-81.mjs';
+import { g as getCollection } from '../chunks/_astro_content_BlWuvrH8.mjs';
 import { $ as $$BaseHead, a as $$Header, b as $$Footer } from '../chunks/Header_8Nepm4LL.mjs';
 import { $ as $$FormattedDate } from '../chunks/FormattedDate_DkbEPmAS.mjs';
 import { S as SITE_DESCRIPTION, a as SITE_TITLE } from '../chunks/consts_Dt6daOuA.mjs';
