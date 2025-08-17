@@ -1,5 +1,5 @@
 import { b as createAstro, c as createComponent, m as maybeRenderHead, d as addAttribute, a as renderTemplate, r as renderComponent, e as renderHead } from '../../chunks/astro/server_crBGogEi.mjs';
-import { g as getCollection } from '../../chunks/_astro_content_cPo-rm3D.mjs';
+import { g as getCollection } from '../../chunks/_astro_content_WdbV0-81.mjs';
 import { $ as $$BaseHead, a as $$Header, b as $$Footer } from '../../chunks/Header_8Nepm4LL.mjs';
 /* empty css                                        */
 import { S as SITE_DESCRIPTION, a as SITE_TITLE } from '../../chunks/consts_Dt6daOuA.mjs';

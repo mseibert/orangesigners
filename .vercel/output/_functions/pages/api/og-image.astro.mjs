@@ -1,4 +1,4 @@
-import { g as getCollection } from '../../chunks/_astro_content_cPo-rm3D.mjs';
+import { g as getCollection } from '../../chunks/_astro_content_WdbV0-81.mjs';
 import sharp from 'sharp';
 export { renderers } from '../../renderers.mjs';
 
