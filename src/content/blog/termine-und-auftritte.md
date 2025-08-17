@@ -2,6 +2,7 @@
 title: 'Termine und Auftritte'
 description: 'Termine und Auftritte der Orangesingers'
 pubDate: 'Aug 17 2025'
+heroImage: '../../assets/images/kalendar.png'
 ---
 
 # Auftritte der Orangesingers - Jahresübersicht
