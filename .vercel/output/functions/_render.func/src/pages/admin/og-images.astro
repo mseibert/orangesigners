@@ -1,0 +1,83 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import OGImagePreview from '../../components/OGImagePreview.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import '../../styles/global.css';
+
+const posts = await getCollection('blog');
+---
+
+<!doctype html>
+<html lang="de">
+	<head>
+		<BaseHead 
+			title="OG Images Admin - Orange Singers" 
+			description="Verwaltung der Open Graph Bilder"
+		/>
+	</head>
+	<body>
+		<Header />
+		<main class="max-w-7xl mx-auto px-4 py-8">
+			<!-- Header -->
+			<div class="text-center mb-12">
+				<h1 class="text-4xl font-bold text-orange-500 mb-4">🎨 OG Images Verwaltung</h1>
+				<p class="text-xl text-gray-600">
+					Übersicht aller generierten Open Graph Bilder für Social Media
+				</p>
+			</div>
+
+			<!-- Home Page OG Image -->
+			<div class="mb-12">
+				<h2 class="text-2xl font-bold text-gray-800 mb-6 border-b-2 border-orange-500 pb-2">
+					🏠 Hauptseite
+				</h2>
+				<OGImagePreview 
+					title={SITE_TITLE}
+					description={SITE_DESCRIPTION}
+					type="home"
+				/>
+			</div>
+
+			<!-- Blog Posts OG Images -->
+			<div class="mb-12">
+				<h2 class="text-2xl font-bold text-gray-800 mb-6 border-b-2 border-orange-500 pb-2">
+					📝 Blog Posts
+				</h2>
+				
+				<div class="space-y-8">
+					{posts.map((post) => (
+						<div class="bg-gray-50 rounded-lg p-6">
+							<h3 class="text-lg font-semibold text-gray-800 mb-2">
+								{post.data.title}
+							</h3>
+							<p class="text-sm text-gray-600 mb-4">
+								Veröffentlicht: {post.data.pubDate.toLocaleDateString('de-DE')}
+							</p>
+							<OGImagePreview 
+								title={post.data.title}
+								description={post.data.description}
+								slug={post.slug}
+								type="blog"
+							/>
+						</div>
+					))}
+				</div>
+			</div>
+
+			<!-- Info Section -->
+			<div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+				<h3 class="text-lg font-semibold text-blue-800 mb-3">ℹ️ Informationen</h3>
+				<div class="text-blue-700 space-y-2">
+					<p>• Alle OG-Bilder werden automatisch bei jedem Build generiert</p>
+					<p>• Bilder haben die Standard-Dimensionen 1200×630 Pixel</p>
+					<p>• Hero-Images aus Blog-Posts werden als Hintergrund verwendet</p>
+					<p>• Bilder sind für Social Media (Facebook, Twitter, LinkedIn) optimiert</p>
+				</div>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>

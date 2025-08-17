@@ -1,0 +1,79 @@
+import { b as createAstro, c as createComponent, r as renderComponent, e as renderHead, d as addAttribute, a as renderTemplate } from '../chunks/astro/server_crBGogEi.mjs';
+import { $ as $$BaseHead, a as $$Header, b as $$Footer } from '../chunks/Header_8Nepm4LL.mjs';
+import { S as SITE_DESCRIPTION, a as SITE_TITLE } from '../chunks/consts_Dt6daOuA.mjs';
+import { g as getCollection } from '../chunks/_astro_content_cPo-rm3D.mjs';
+/* empty css                                 */
+export { renderers } from '../renderers.mjs';
+
+const $$Astro = createAstro("https://orangesingers.de");
+const $$Index = createComponent(async ($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
+  Astro2.self = $$Index;
+  const posts = (await getCollection("blog")).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+  const latestPost = posts[0];
+  return renderTemplate`<html lang="de"> <head>${renderComponent($$result, "BaseHead", $$BaseHead, { "title": SITE_TITLE, "description": SITE_DESCRIPTION, "ogImage": new URL("/api/og-image?type=home", Astro2.site).href })}${renderHead()}</head> <body class="bg-gray-50 min-h-screen"> ${renderComponent($$result, "Header", $$Header, {})} <main class="max-w-7xl mx-auto px-4 py-8"> <!-- Hero Section --> <div class="text-center py-16 px-6 mb-12 bg-orange-400 text-white rounded-2xl shadow-2xl"> <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+🎵 Willkommen bei den <span class="text-orange-100">Orange Singers</span>!
+</h1> <p class="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed text-orange-50">
+Herzlich willkommen auf der offiziellen Website der <span class="font-bold text-white drop-shadow-lg">Orange Singers</span>, 
+					dem Unterstufenchor der Oranienschule Wiesbaden.
+</p> </div> <!-- Neuester Blog-Artikel (Gelbe Box) --> ${latestPost && renderTemplate`<div class="mb-16 p-10 md:p-14 bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl text-center border-2 border-orange-300 shadow-lg"> <div class="flex flex-col lg:flex-row items-center gap-8"> ${latestPost.data.heroImage && renderTemplate`<div class="lg:w-1/3"> <img${addAttribute(latestPost.data.heroImage.src, "src")}${addAttribute(latestPost.data.title, "alt")} class="w-full h-64 object-cover rounded-xl shadow-lg"> </div>`} <div class="lg:w-2/3"> <h3 class="text-3xl font-bold text-orange-800 mb-4">${latestPost.data.title}</h3> <p class="text-xl text-orange-700 leading-relaxed mb-8"> ${latestPost.data.description} </p> <div class="flex flex-col sm:flex-row gap-6 justify-center items-center"> <a${addAttribute(`/blog/${latestPost.id}`, "href")} class="px-8 py-4 bg-orange-600 text-white font-bold rounded-xl hover:bg-orange-700 hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1" style="color: white !important;">
+Artikel lesen
+</a> <a href="/blog" class="px-8 py-4 border-2 border-orange-500 text-orange-600 font-bold rounded-xl hover:bg-orange-500 hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+Alle Artikel
+</a> </div> </div> </div> </div>`} <!-- Content Grid --> <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 mb-16"> <!-- Über uns --> <div class="bg-white border border-gray-200 rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"> <h2 class="text-3xl font-bold text-oranienschule-600 mb-8 border-b-2 border-oranienschule-500 pb-3">Über uns</h2> <p class="text-gray-700 leading-relaxed text-lg">
+Die Orange Singers sind ein Chor für Schülerinnen und Schüler der 5. und 6. Klasse 
+						der Oranienschule Wiesbaden. Unter der Leitung von <span class="font-bold text-oranienschule-600">Juliane Seibert</span>
+entdecken wir gemeinsam die Freude am gemeinsamen Singen und Musizieren.
+</p> </div> <!-- Oranienschule --> <div class="bg-white border border-gray-200 rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"> <h2 class="text-3xl font-bold text-oranienschule-600 mb-8 border-b-2 border-oranienschule-500 pb-3">Die Oranienschule Wiesbaden</h2> <p class="text-gray-700 leading-relaxed text-lg">
+Die Oranienschule ist eine Schule mit <span class="font-bold text-oranienschule-600">Musikschwerpunkt</span>, die ihren 
+						Schülerinnen und Schülern eine besondere musikalische Förderung bietet. Als Teil 
+						des vielfältigen Musikangebots der Schule bereichern die Orange Singers das 
+						schulische Leben mit ihren Auftritten und Konzerten.
+</p> </div> <!-- Was wir machen --> <div class="bg-white border border-gray-200 rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"> <h2 class="text-3xl font-bold text-oranienschule-600 mb-8 border-b-2 border-oranienschule-500 pb-3">Was wir machen</h2> <ul class="text-gray-700 space-y-3 pl-6 text-lg mb-8"> <li class="leading-relaxed">🎵 Gemeinsames Singen und Musizieren</li> <li class="leading-relaxed">🎼 Erlernen verschiedener Musikstile und Lieder</li> <li class="leading-relaxed">🎭 Auftritte bei schulischen Veranstaltungen</li> <li class="leading-relaxed">🎪 Konzerte und musikalische Darbietungen</li> <li class="leading-relaxed">🌟 Förderung der musikalischen Talente</li> </ul> <div class="flex flex-col sm:flex-row gap-4"> <a href="/kooperationspartner" class="px-8 py-4 bg-gradient-to-r from-oranienschule-500 to-oranienschule-600 text-white font-bold rounded-xl hover:from-oranienschule-600 hover:to-oranienschule-700 transition-all duration-300 text-center shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+Kooperationspartner
+</a> </div> </div> <!-- Mitmachen --> <div class="bg-white border border-gray-200 rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"> <h2 class="text-3xl font-bold text-oranienschule-600 mb-8 border-b-2 border-oranienschule-500 pb-3">Mitmachen</h2> <p class="text-gray-700 leading-relaxed mb-6 text-lg">
+Alle Schülerinnen und Schüler der 5. und 6. Klasse sind herzlich eingeladen, 
+						bei den Orange Singers mitzumachen! Vorkenntnisse sind nicht erforderlich - 
+						die Freude am Singen steht im Mittelpunkt.
+</p> <p class="text-gray-700 leading-relaxed mb-8 text-lg">
+Bei Fragen oder Interesse an einer Teilnahme kannst du dich gerne an
+<span class="font-bold text-oranienschule-600">Juliane Seibert</span> wenden oder einfach bei einer unserer 
+						Proben vorbeischauen.
+</p> <div class="flex flex-col sm:flex-row gap-4"> <a href="/termine" class="px-8 py-4 bg-gradient-to-r from-oranienschule-500 to-oranienschule-600 text-white font-bold rounded-xl hover:from-oranienschule-600 hover:to-oranienschule-700 transition-all duration-300 text-center shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+Termine
+</a> <a href="/blog" class="px-8 py-4 border-2 border-oranienschule-500 text-oranienschule-600 font-bold rounded-xl hover:bg-oranienschule-500 hover:text-white transition-all duration-300 text-center shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+Aktuelle News
+</a> </div> </div> </div> <!-- Zwei weiße Boxen --> <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10"> <!-- Einverständniserklärung --> <div class="bg-white border border-gray-200 rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"> <h2 class="text-3xl font-bold text-oranienschule-600 mb-8 border-b-2 border-oranienschule-500 pb-3">📄 Wichtige Informationen</h2> <p class="text-gray-700 leading-relaxed mb-6 text-lg">
+Für unsere Auftritte und Aktivitäten benötigen wir das Einverständnis der Eltern zur 
+						Nutzung von Bild- und Videoaufnahmen. Diese Einverständniserklärung ist wichtig, 
+						damit wir unsere Konzerte und Veranstaltungen dokumentieren und teilen können.
+</p> <div class="flex flex-col gap-4 mb-6"> <a href="/orange-signers-oranienschule-bildrechte.pdf" target="_blank" rel="noopener noreferrer" class="px-6 py-3 bg-gradient-to-r from-oranienschule-500 to-oranienschule-600 text-white font-bold rounded-xl hover:from-oranienschule-600 hover:to-oranienschule-700 transition-all duration-300 text-center shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+📋 PDF herunterladen
+</a> <a href="https://bit.ly/orangesingersrechte" target="_blank" rel="noopener noreferrer" class="px-6 py-3 border-2 border-oranienschule-500 text-oranienschule-600 font-bold rounded-xl hover:bg-oranienschule-500 hover:text-white transition-all duration-300 text-center shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+🔗 Online anzeigen
+</a> </div> <p class="text-sm text-gray-600"> <strong>Hinweis:</strong> Bitte fülle die Einverständniserklärung aus und gib sie bei der 
+						Chorleiterin ab, bevor du an Auftritten teilnimmst.
+</p> </div> <!-- Blog-Hinweis --> <div class="bg-white border border-gray-200 rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"> <h2 class="text-3xl font-bold text-oranienschule-600 mb-8 border-b-2 border-oranienschule-500 pb-3">🎵 Aktuelle News & Berichte</h2> <p class="text-gray-700 leading-relaxed mb-6 text-lg">
+Erfahren Sie mehr über unsere Aktivitäten, Konzerte und das Chorleben der Orange Singers. 
+						In unserem Blog berichten wir regelmäßig über unsere Auftritte, Proben und besondere 
+						Momente im Chorleben.
+</p> <div class="flex flex-col gap-4"> <a href="/blog" class="px-6 py-3 bg-gradient-to-r from-oranienschule-500 to-oranienschule-600 text-white font-bold rounded-xl hover:from-oranienschule-600 hover:to-oranienschule-700 transition-all duration-300 text-center shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+Zum Blog
+</a> </div> </div> </div> </main> ${renderComponent($$result, "Footer", $$Footer, {})} </body></html>`;
+}, "/Users/martinseibert/Documents/code/orangesingers/src/pages/index.astro", void 0);
+
+const $$file = "/Users/martinseibert/Documents/code/orangesingers/src/pages/index.astro";
+const $$url = "";
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+	__proto__: null,
+	default: $$Index,
+	file: $$file,
+	url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };

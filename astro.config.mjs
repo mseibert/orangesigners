@@ -2,7 +2,7 @@
 
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
-import node from '@astrojs/node';
+import vercel from '@astrojs/vercel';
 import { defineConfig } from 'astro/config';
 import tailwind from '@tailwindcss/vite';
 
@@ -10,8 +10,10 @@ import tailwind from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://orangesingers.de',
   output: 'server',
-  adapter: node({
-    mode: 'standalone'
+  adapter: vercel({
+    webAnalytics: {
+      enabled: true,
+    },
   }),
   integrations: [mdx(), sitemap()],
   vite: {
