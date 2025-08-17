@@ -1,0 +1,464 @@
+---
+import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
+import Layout from '../layouts/BlogPost.astro';
+
+// Hier können Sie Ihre Termine definieren
+const events = {
+  '2024-09': [
+    { date: 15, title: 'Einschulung', description: 'Musikalisches Willkommen für neue Schüler' },
+  ],
+  '2024-10': [
+    { date: 22, title: 'Ringkirchenkonzert', description: 'Gemeinsamer Auftritt mit anderen Chören' },
+  ],
+  '2024-11': [
+    { date: 8, title: 'Tag der offenen Tür', description: 'Präsentation für Besucher' },
+  ],
+  '2024-12': [
+    { date: 14, title: 'Weihnachtsmarkt', description: 'Festliche Lieder zur Weihnachtszeit' },
+    { date: 18, title: 'Chorkonzert', description: 'Unser großer Jahresauftritt' },
+  ],
+  '2025-03': [
+    { date: 21, title: 'Kulturnacht', description: 'Kultureller Höhepunkt der Schule' },
+  ]
+};
+
+const monthNames = [
+  'Januar', 'Februar', 'März', 'April', 'Mai', 'Juni',
+  'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'
+];
+---
+
+<Layout
+  title="Termine und Auftritte"
+  description="Termine und Auftritte der Orangesingers"
+  pubDate={new Date('August 08 2021')}
+>
+  <div class="calendar-container">
+    <h2>Probenzeiten</h2>
+    <p class="rehearsal-info">
+      Die Orangesingers proben jeden Dienstag in der 1. und 8. Stunde in der Oranienschule. 
+      Wenn du in der 5. oder 6. Klasse bist, kannst du nach Absprache bei uns hineinschnuppern 
+      und dich vom Chorgesang begeistern lassen.
+    </p>
+
+    <h2>Auftrittstermine</h2>
+    
+    <!-- Kalender Header -->
+    <div class="calendar-header">
+      <button class="nav-button" id="prevMonth">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15,18 9,12 15,6"></polyline>
+        </svg>
+      </button>
+      <h3 class="month-year" id="monthYear">September 2024</h3>
+      <button class="nav-button" id="nextMonth">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9,18 15,12 9,6"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Kalender Grid -->
+    <div class="calendar-grid">
+      <div class="calendar-header-days">
+        <div class="day-header">Mo</div>
+        <div class="day-header">Di</div>
+        <div class="day-header">Mi</div>
+        <div class="day-header">Do</div>
+        <div class="day-header">Fr</div>
+        <div class="day-header">Sa</div>
+        <div class="day-header">So</div>
+      </div>
+      <div class="calendar-days" id="calendarDays">
+        <!-- Tage werden durch JavaScript generiert -->
+      </div>
+    </div>
+
+    <!-- Event Details -->
+    <div class="event-details" id="eventDetails" style="display: none;">
+      <h3 id="eventTitle"></h3>
+      <p id="eventDescription"></p>
+      <button class="close-details" id="closeDetails">×</button>
+    </div>
+
+    <h2>Mitmachen</h2>
+    <p class="join-info">
+      Du hast Interesse am Singen und möchtest Teil unserer Chorgemeinschaft werden? 
+      Dann komm einfach dienstags in der 7. und 8. Stunde vorbei oder sprich uns an. 
+      Besonders Schülerinnen und Schüler der 5. und 6. Klassen sind herzlich eingeladen, 
+      nach Absprache bei einer Probe zu schnuppern und zu erleben, wie viel Freude 
+      gemeinsames Musizieren macht.
+    </p>
+  </div>
+
+  <style>
+    .calendar-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .rehearsal-info, .join-info {
+      background: linear-gradient(135deg, #fff3e6, #ffe4cc);
+      padding: 20px;
+      border-radius: 12px;
+      border-left: 5px solid #ff8c00;
+      margin: 20px 0;
+    }
+
+    .calendar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 30px 0 20px 0;
+      padding: 20px;
+      background: linear-gradient(135deg, #ff8c00, #ffa500);
+      color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
+    }
+
+    .nav-button {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      padding: 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-button:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.1);
+    }
+
+    .month-year {
+      font-size: 1.8em;
+      margin: 0;
+      font-weight: 600;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .calendar-grid {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      border: 1px solid #f0f0f0;
+    }
+
+    .calendar-header-days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      background: linear-gradient(135deg, #ff7f00, #ff9500);
+    }
+
+    .day-header {
+      padding: 15px 10px;
+      text-align: center;
+      font-weight: 600;
+      color: white;
+      text-transform: uppercase;
+      font-size: 0.9em;
+      letter-spacing: 1px;
+    }
+
+    .calendar-days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1px;
+      background: #f5f5f5;
+    }
+
+    .day {
+      background: white;
+      min-height: 80px;
+      padding: 8px;
+      border-radius: 0;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .day:hover {
+      background: #fff8f0;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 140, 0, 0.15);
+    }
+
+    .day.other-month {
+      background: #f9f9f9;
+      color: #ccc;
+    }
+
+    .day.today {
+      background: linear-gradient(135deg, #ffe4cc, #ffd4a3);
+      border: 2px solid #ff8c00;
+      font-weight: bold;
+    }
+
+    .day.has-event {
+      background: linear-gradient(135deg, #ffece0, #ffd4a3);
+      border-left: 4px solid #ff6600;
+    }
+
+    .day.has-event:hover {
+      background: linear-gradient(135deg, #ffd4a3, #ffb366);
+    }
+
+    .day-number {
+      font-size: 1.1em;
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: #333;
+    }
+
+    .day.other-month .day-number {
+      color: #ccc;
+    }
+
+    .event-indicator {
+      background: linear-gradient(135deg, #ff6600, #ff8c00);
+      color: white;
+      padding: 2px 6px;
+      border-radius: 12px;
+      font-size: 0.7em;
+      margin-top: 2px;
+      font-weight: 500;
+      box-shadow: 0 2px 4px rgba(255, 102, 0, 0.3);
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      max-width: 100%;
+    }
+
+    .event-details {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      max-width: 400px;
+      width: 90%;
+      border: 2px solid #ff8c00;
+    }
+
+    .event-details::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid #ff8c00;
+    }
+
+    .close-details {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #ff6600;
+      font-weight: bold;
+    }
+
+    .close-details:hover {
+      color: #ff4400;
+    }
+
+    #eventTitle {
+      color: #ff6600;
+      margin: 0 0 15px 0;
+      font-size: 1.5em;
+    }
+
+    #eventDescription {
+      margin: 0;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .calendar-container {
+        padding: 10px;
+      }
+      
+      .day {
+        min-height: 60px;
+        padding: 4px;
+      }
+      
+      .month-year {
+        font-size: 1.4em;
+      }
+      
+      .day-header {
+        padding: 10px 5px;
+        font-size: 0.8em;
+      }
+    }
+  </style>
+
+  <script define:vars={{ events, monthNames }}>
+    class Calendar {
+      constructor() {
+        this.currentDate = new Date();
+        this.currentDate.setDate(1); // Immer der erste Tag des Monats
+        this.events = events;
+        this.monthNames = monthNames;
+        
+        this.initializeElements();
+        this.bindEvents();
+        this.render();
+      }
+
+      initializeElements() {
+        this.monthYearElement = document.getElementById('monthYear');
+        this.calendarDaysElement = document.getElementById('calendarDays');
+        this.prevButton = document.getElementById('prevMonth');
+        this.nextButton = document.getElementById('nextMonth');
+        this.eventDetails = document.getElementById('eventDetails');
+        this.eventTitle = document.getElementById('eventTitle');
+        this.eventDescription = document.getElementById('eventDescription');
+        this.closeDetails = document.getElementById('closeDetails');
+      }
+
+      bindEvents() {
+        this.prevButton.addEventListener('click', () => this.previousMonth());
+        this.nextButton.addEventListener('click', () => this.nextMonth());
+        this.closeDetails.addEventListener('click', () => this.hideEventDetails());
+        
+        // Schließe Event Details beim Klick außerhalb
+        document.addEventListener('click', (e) => {
+          if (this.eventDetails.style.display === 'block' && 
+              !this.eventDetails.contains(e.target) && 
+              !e.target.closest('.day')) {
+            this.hideEventDetails();
+          }
+        });
+      }
+
+      previousMonth() {
+        this.currentDate.setMonth(this.currentDate.getMonth() - 1);
+        this.render();
+      }
+
+      nextMonth() {
+        this.currentDate.setMonth(this.currentDate.getMonth() + 1);
+        this.render();
+      }
+
+      render() {
+        this.renderHeader();
+        this.renderDays();
+      }
+
+      renderHeader() {
+        const month = this.monthNames[this.currentDate.getMonth()];
+        const year = this.currentDate.getFullYear();
+        this.monthYearElement.textContent = `${month} ${year}`;
+      }
+
+      renderDays() {
+        const year = this.currentDate.getFullYear();
+        const month = this.currentDate.getMonth();
+        
+        // Erster Tag des Monats und dessen Wochentag
+        const firstDay = new Date(year, month, 1);
+        const lastDay = new Date(year, month + 1, 0);
+        const startDate = new Date(firstDay);
+        
+        // Montag als Wochenanfang (1 = Montag, 0 = Sonntag)
+        const dayOfWeek = (firstDay.getDay() + 6) % 7;
+        startDate.setDate(1 - dayOfWeek);
+
+        this.calendarDaysElement.innerHTML = '';
+
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        // Generiere 42 Tage (6 Wochen)
+        for (let i = 0; i < 42; i++) {
+          const currentDay = new Date(startDate);
+          currentDay.setDate(startDate.getDate() + i);
+          
+          const dayElement = this.createDayElement(currentDay, month, today);
+          this.calendarDaysElement.appendChild(dayElement);
+        }
+      }
+
+      createDayElement(date, currentMonth, today) {
+        const dayDiv = document.createElement('div');
+        dayDiv.className = 'day';
+        
+        const dayNumber = document.createElement('div');
+        dayNumber.className = 'day-number';
+        dayNumber.textContent = date.getDate();
+        dayDiv.appendChild(dayNumber);
+
+        // Prüfe ob der Tag im aktuellen Monat ist
+        if (date.getMonth() !== currentMonth) {
+          dayDiv.classList.add('other-month');
+        }
+
+        // Prüfe ob es heute ist
+        if (date.getTime() === today.getTime()) {
+          dayDiv.classList.add('today');
+        }
+
+        // Prüfe auf Events
+        const eventKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+        const dayEvents = this.events[eventKey]?.filter(event => event.date === date.getDate()) || [];
+        
+        if (dayEvents.length > 0) {
+          dayDiv.classList.add('has-event');
+          
+          dayEvents.forEach(event => {
+            const eventElement = document.createElement('div');
+            eventElement.className = 'event-indicator';
+            eventElement.textContent = event.title;
+            dayDiv.appendChild(eventElement);
+            
+            // Event-Click Handler
+            dayDiv.addEventListener('click', () => this.showEventDetails(event));
+          });
+        }
+
+        return dayDiv;
+      }
+
+      showEventDetails(event) {
+        this.eventTitle.textContent = event.title;
+        this.eventDescription.textContent = event.description;
+        this.eventDetails.style.display = 'block';
+      }
+
+      hideEventDetails() {
+        this.eventDetails.style.display = 'none';
+      }
+    }
+
+    // Initialisiere den Kalender wenn die Seite geladen ist
+    document.addEventListener('DOMContentLoaded', () => {
+      new Calendar();
+    });
+  </script>
+</Layout>
