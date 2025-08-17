@@ -16,7 +16,8 @@ export const onRequest = defineMiddleware(async (context, next) => {
   if (import.meta.env.DEV || 
       import.meta.env.BUILD || 
       import.meta.env.PRERENDER ||
-      !import.meta.env.SINGERTOKEN) {
+      !import.meta.env.SINGERTOKEN ||
+      import.meta.env.SKIP_AUTH === 'true') {
     return next();
   }
 
