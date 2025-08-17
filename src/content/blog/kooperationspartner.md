@@ -1,7 +1,7 @@
 ---
 title: 'Unsere Kooperationspartner'
 description: 'Lernen Sie unsere geschätzten Partner kennen, die uns dabei helfen, unseren Schülern die bestmögliche musikalische Ausbildung zu bieten'
-pubDate: '2025-08-17'
+pubDate: '2025-08-15'
 heroImage: '../../assets/images/kooperationspartner.png'
 ---
 

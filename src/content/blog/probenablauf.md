@@ -1,7 +1,7 @@
 ---
 title: 'Musikalische Entdeckungsreise: Der Unterstufen-Chor der Oranienschule'
 description: 'Jeden Dienstag treffen sich Schülerinnen und Schüler der Unterstufe zum gemeinsamen Singen, individueller Stimmbildung und mehrstimmiger Chorarbeit'
-pubDate: '2025-08-17'
+pubDate: '2025-08-13'
 heroImage: '../../assets/images/probenablauf.png'
 ---
 Jeden Dienstag um 14:00 Uhr verwandelt sich ein Klassenraum der Oranienschule in einen lebendigen Musikraum. Hier treffen sich Schülerinnen und Schüler der Unterstufe, um gemeinsam zu singen und ihre Stimme zu entdecken.

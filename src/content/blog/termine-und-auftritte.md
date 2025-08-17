@@ -1,7 +1,7 @@
 ---
 title: 'Termine und Auftritte'
 description: 'Termine und Auftritte der Orangesingers'
-pubDate: 'Aug 17 2025'
+pubDate: '2025-08-18'
 heroImage: '../../assets/images/kalendar.png'
 ---
 

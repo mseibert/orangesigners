@@ -1,7 +1,7 @@
 ---
 title: 'Probenfahrt der Oranienschule in der Musikakademie Schlitz'
 description: 'Vier intensive Tage voller Musik und gemeinsamer Probenarbeit'
-pubDate: '2025-08-17'
+pubDate: '2025-08-10'
 heroImage: '../../assets/images/probenfährte.png'
 
 ---
