@@ -2,7 +2,7 @@
 title: 'Unser Chorkonzert am 20. März'
 description: 'Die Orangesingers berichten von ihrem Auftritt beim diesjährigen Chorkonzert der Oranienschule'
 pubDate: 'Aug 17 2025'
-heroImage: '../../assets/blog-placeholder-4.jpg'
+heroImage: '../../assets/images/chorkonzert.png'
 ---
 
 Was für ein aufregender Abend! Am Donnerstag, dem 20. März 2025, durften wir Orangesingers beim großen Chorkonzert der Oranienschule auftreten. Gemeinsam mit dem Mittel- und Oberstufenchor haben wir einen tollen Konzertabend gestaltet.

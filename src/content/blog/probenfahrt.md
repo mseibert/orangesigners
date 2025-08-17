@@ -2,7 +2,8 @@
 title: 'Probenfahrt der Oranienschule in der Musikakademie Schlitz'
 description: 'Vier intensive Tage voller Musik und gemeinsamer Probenarbeit'
 pubDate: '2025-08-17'
-heroImage: '../../assets/blog-placeholder-3.jpg'
+heroImage: '../../assets/images/probenfahrt.png'
+
 ---
 
 Von Sonntag bis Mittwoch erlebten die Schülerinnen und Schüler der Oranienschule eine besondere musikalische Reise in der Musikakademie Schlitz. Auch die OrangeSingers waren Teil dieser intensiven Probenfahrt, die allen Beteiligten unvergessliche Momente bescherte.
