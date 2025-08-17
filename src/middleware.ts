@@ -12,13 +12,23 @@ export const onRequest = defineMiddleware(async (context, next) => {
     return next();
   }
 
-  // Skip authentication during development, build time, or when prerendering
-  // Also skip for static assets and when no token is available
-  if (import.meta.env.DEV || 
-      import.meta.env.BUILD || 
-      import.meta.env.PRERENDER ||
-      !import.meta.env.SINGERTOKEN ||
-      import.meta.env.SKIP_AUTH === 'true') {
+  // Skip authentication during development
+  if (import.meta.env.DEV) {
+    return next();
+  }
+
+  // Skip authentication during build time
+  if (import.meta.env.BUILD) {
+    return next();
+  }
+
+  // Skip authentication when no token is available
+  if (!import.meta.env.SINGERTOKEN) {
+    return next();
+  }
+
+  // Skip authentication when SKIP_AUTH is set
+  if (import.meta.env.SKIP_AUTH === 'true') {
     return next();
   }
 
@@ -26,6 +36,18 @@ export const onRequest = defineMiddleware(async (context, next) => {
   
   // Check for Authorization header
   const authHeader = request.headers.get('Authorization');
+  
+  // If authorization header is present, validate it
+  if (authHeader && authHeader.startsWith('Basic ')) {
+    const encodedCredentials = authHeader.substring(6);
+    const credentials = atob(encodedCredentials);
+    const [username, password] = credentials.split(':');
+    
+    // For Basic Auth, we'll use the token as both username and password
+    if (password === expectedToken) {
+      return next();
+    }
+  }
   
   // Check if this is a bot/crawler request (which should be allowed for generation)
   const userAgent = request.headers.get('User-Agent') || '';
@@ -41,28 +63,6 @@ export const onRequest = defineMiddleware(async (context, next) => {
     return next();
   }
   
-  // If no authorization header is present, redirect to auth page
-  // This handles both generation requests (which will be allowed) and real users
-  if (!authHeader) {
-    // Only redirect if this is not a generation request
-    if (!isBot && !import.meta.env.BUILD && !import.meta.env.PRERENDER) {
-      return Response.redirect(new URL('/auth', url), 302);
-    }
-    return next();
-  }
-  
-  // If authorization header is present, validate it
-  if (authHeader && authHeader.startsWith('Basic ')) {
-    const encodedCredentials = authHeader.substring(6);
-    const credentials = atob(encodedCredentials);
-    const [username, password] = credentials.split(':');
-    
-    // For Basic Auth, we'll use the token as both username and password
-    if (password === expectedToken) {
-      return next();
-    }
-  }
-  
-  // Redirect to our beautiful auth page instead of showing browser dialog
+  // Redirect to our beautiful auth page for real users
   return Response.redirect(new URL('/auth', url), 302);
 });
