@@ -2,7 +2,7 @@
 title: 'Unser Chorkonzert am 20. März'
 description: 'Die Orangesingers berichten von ihrem Auftritt beim diesjährigen Chorkonzert der Oranienschule'
 pubDate: 'Aug 17 2025'
-heroImage: '../../assets/images/chorkonzert.png'
+heroImage: '../../assets/images/chorconcert.png'
 ---
 ## Hörproben
 
