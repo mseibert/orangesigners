@@ -40,6 +40,20 @@ Die Website generiert automatisch Open Graph Bilder für Social Media (Facebook,
 - Node.js 18+
 - pnpm
 
+### Umgebungsvariablen
+
+Die Website benötigt folgende Umgebungsvariablen:
+
+```bash
+# Passwort für die Website-Authentifizierung
+SINGERTOKEN=dein-passwort-hier
+
+# Optional: Überspringe Authentifizierung (für Entwicklung)
+SKIP_AUTH=true
+```
+
+**Hinweis**: Setze die `SINGERTOKEN` Umgebungsvariable in deiner Shell-Umgebung oder erstelle eine `.env` Datei im Projektverzeichnis.
+
 ### Installation
 
 ```bash

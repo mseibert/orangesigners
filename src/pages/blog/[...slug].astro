@@ -1,18 +1,21 @@
 ---
-export const prerender = true;
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
 
-export async function getStaticPaths() {
-	const posts = await getCollection('blog');
-	return posts.map((post) => ({
-		params: { slug: post.id },
-		props: post,
-	}));
-}
-type Props = CollectionEntry<'blog'>;
+// Bei SSR verwenden wir Astro.params um den Slug zu bekommen
+const { slug } = Astro.params;
 
-const post = Astro.props;
+// Alle Blog-Posts laden
+const posts = await getCollection('blog');
+
+// Den entsprechenden Post finden
+const post = posts.find((post) => post.id === slug);
+
+// 404 wenn Post nicht gefunden
+if (!post) {
+	return Astro.redirect('/404');
+}
+
 const { Content } = await render(post);
 ---
 
